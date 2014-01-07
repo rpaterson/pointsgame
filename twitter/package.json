@@ -1,0 +1,28 @@
+{
+  "name": "pointsgame-twitter",
+  "version": "0.1.0",
+  "description": "The Game of Points on Twitter",
+  "main": "twitter.njs",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+  },
+  "repository": {
+	  "type": "git",
+	  "url": "https://github.com/rpaterson/pointsgame.git"
+  },
+  "keywords": [
+    "node.js",
+    "eclipse",
+    "nodeclipse",
+    "pointsgame",
+    "twitter",
+    "points",
+    "game"
+  ],
+  "bugs": {
+	  "url": "http://github.com/rpaterson/pointsgame/issues"
+  }
+  "author": "Roy Paterson",
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md"
+}
