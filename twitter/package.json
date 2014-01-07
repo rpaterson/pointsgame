@@ -21,6 +21,13 @@
   ],
   "bugs": {
 	  "url": "http://github.com/rpaterson/pointsgame/issues"
+  },
+  "dependencies": {
+	  "twitter": "0.2.5"
+  },
+  "config": {
+	  "pointsgame_consumer_secret": "",
+	  "pointsgame_access_token_secret": ""
   }
   "author": "Roy Paterson",
   "license": "Apache-2.0",
