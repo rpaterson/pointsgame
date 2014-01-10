@@ -28,7 +28,7 @@
   "config": {
 	  "pointsgame_consumer_secret": "",
 	  "pointsgame_access_token_secret": ""
-  }
+  },
   "author": "Roy Paterson",
   "license": "Apache-2.0",
   "readmeFilename": "README.md"
