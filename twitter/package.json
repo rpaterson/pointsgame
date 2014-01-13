@@ -2,7 +2,7 @@
   "name": "pointsgame-twitter",
   "version": "0.1.0",
   "description": "The Game of Points on Twitter",
-  "main": "twitter.njs",
+  "main": "index.njs",
   "scripts": {
     "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
   },
