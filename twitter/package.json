@@ -4,7 +4,8 @@
   "description": "The Game of Points on Twitter",
   "main": "index.njs",
   "scripts": {
-    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+    "start": "node ./index.njs",
+    "test": "./node_modules/.bin/mocha --require should"
   },
   "repository": {
 	  "type": "git",
@@ -24,6 +25,10 @@
   },
   "dependencies": {
 	  "twitter": "0.2.5"
+  },
+  "devDependencies": {
+	  "mocha": "1.17.0",
+	  "should": "2.1.1"
   },
   "config": {
 	  "pointsgame_consumer_secret": "",
