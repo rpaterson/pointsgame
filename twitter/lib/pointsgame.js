@@ -54,16 +54,26 @@ var PointsGame = function PointsGame(twitter, db) {
  */
 PointsGame.parseTweet = function parseTweet(text) {
 	
-	var match;
+	var toUsername, pointsStr;
 	if (match = text.match(/([+-]?\d+)\s.*?#points\s.*?@(\w+)/i)) {
-		return { 'toUsername': match[2], 'points': parseInt(match[1]) }
+		
+		toUsername = match[2]
+		pointsStr = match[1]
+		
 	} else if (match = text.match(/@(\w+)\s.*?([+-]?\d+)\s+.*?#points/i)) {
-		return { 'toUsername': match[1], 'points': parseInt(match[2]) }
+		
+		toUsername = match[1]
+		pointsStr = match[2]
+		
 	} else {
+		
 		util.log('No assignment parsed from tweet "' + text + '"')
 		return null;
 	}
 	
+	var points = parseInt(pointsStr, 10);
+	
+	return {toUsername: toUsername, points:points}
 }
 
 
