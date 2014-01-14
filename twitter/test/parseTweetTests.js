@@ -1,7 +1,7 @@
 var describe = require('./standalone-mocha').describe
 var it = require('./standalone-mocha').it
 
-var PointsGame = require('../lib/pointsgame.njs')
+var PointsGame = require('../lib/pointsgame.js')
 
 
 describe('PointsGame.parseTweet()', function() {

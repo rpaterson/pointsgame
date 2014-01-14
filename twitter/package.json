@@ -2,10 +2,11 @@
   "name": "pointsgame-twitter",
   "version": "0.1.0",
   "description": "The Game of Points on Twitter",
-  "main": "index.njs",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./index.njs",
-    "test": "./node_modules/.bin/mocha --require should"
+    "start": "node ./index.js",
+    "test": "./node_modules/.bin/mocha --require should",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha"
   },
   "repository": {
 	  "type": "git",
@@ -28,7 +29,8 @@
   },
   "devDependencies": {
 	  "mocha": "1.17.0",
-	  "should": "2.1.1"
+	  "should": "2.1.1",
+	  "istanbul": "0.2.3"
   },
   "config": {
 	  "pointsgame_consumer_secret": "",
