@@ -1,20 +1,24 @@
 var util = require('util')
+var Twitter = require('twitter')
 
 /**
  * The Game of Points on Twitter
  * @constructor
- * @param {twitter} twitter
  * @param db database
  * @author rpaterson
  */
-var PointsGame = function PointsGame(twitter, db) {
+var PointsGame = function PointsGame(db) {
 
-	var pointsgameTwitter = new twitter({
+	var pointsgameTwitter = new Twitter({
 	    consumer_key: 'JmBMbdsE5rgdaAOz5WpwIw',
 	    consumer_secret: process.env.npm_package_config_pointsgame_consumer_secret,
 	    access_token_key: '90783985-8yRGeGRWngZNBOa3hhsjJROXbmca2D8pSobNNJ0D5',
 	    access_token_secret: process.env.npm_package_config_pointsgame_access_token_secret
 	});
+	
+	pointsgameTwitter.verifyCredentials(function() {
+		console.log('PointsGame Twitter credentials verified')
+	})
 
 	function processTweet(id_str, text, screen_name) {
 	
