@@ -1,49 +1,46 @@
-var EventEmitter = new require('events').EventEmitter
+var EventEmitter = new require('events').EventEmitter;
 
 /**
  * Mock version of 'Twitter' module
  */
-function MockTwitter(options) {
-	
-	this.options = options;
-	
-	MockTwitter.instances.push(this)
-	
-}
 
-MockTwitter.instances = []
+var __ = function() {};
 
-/**
- * The global Twitter stream
- */
-var stream = new EventEmitter()
-var tweetEvent = 'tweet'
+__.create = function(options) {
+	var instance = new __();
+
+  instance._options = {};
+
+  instance._stream = new EventEmitter();
+
+  return instance;
+};
 
 /**
- * Emit a tweet on the global stream
+ * Emit a tweet
  * 
  * @param {string} id_str ID string
  * @param {string} text 
  * @param {string} screen_name screen name of author
  */
-MockTwitter.tweet = function(id_str, text, screen_name) {
+__.prototype.tweet = function(id_str, text, screen_name) {
 	
 	var tweet = {
-		id_str:id_str,
-		text:text,
-		user:{
-			screen_name:screen_name
+		id_str: id_str,
+		text: text,
+		user: {
+			screen_name: screen_name
 			}
-		}
+		};
 	
-	stream.emit(tweetEvent,tweet)
-}
+	this._stream.emit('tweet',tweet);
+};
 
-MockTwitter.prototype.verifyCredentials = function(callback) {
+__.prototype.verifyCredentials = function(callback) {
 	callback({})
-}
+};
 
-MockTwitter.prototype.stream = function(method, params, streamCallback) {
+__.prototype.stream = function(method, params, callback) {
 
 	if (typeof params === 'function') {
 		callback = params;
@@ -52,21 +49,25 @@ MockTwitter.prototype.stream = function(method, params, streamCallback) {
 	
 	if (method === 'filter') {
 		
-		var trackRegExps = params.track.split(',').map(function(track) { return new RegExp('\b' + track + '\b')});
+		var trackRegExps = params.track.split(',').map(function(track) {
+      return new RegExp('\b' + track + '\b')
+    });
 		
-		var filteredStream = new EventEmitter()
-		stream.on(tweetEvent, function(tweet) {
-			if (trackRegExps.some(function(trackRegExp) { return trackRegExp.test(tweet.text) })) {
+		var filteredStream = new EventEmitter();
+		this._stream.on('tweet', function(tweet) {
+			var filterPass = trackRegExps.some(function(trackRegExp) {
+        return trackRegExp.test(tweet.text);
+      });
+      if (filterPass)
 				filteredStream.emit('data', tweet)
-			}
-		})
+		});
 		
-		streamCallback(filteredStream)
+		callback(filteredStream)
 
 	} else {
 		throw('Only "filter" streams mocked')
 	}
 	
-}
+};
 
-module.exports=MockTwitter
+module.exports = __;
