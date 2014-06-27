@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
-    "test": "istanbul cover node_modules/nodeunit/bin/nodeunit testing/tests --print detail"
+    "test": "jshint . && istanbul cover node_modules/nodeunit/bin/nodeunit testing/tests --print detail"
   },
   "repository": {
 	  "type": "git",
