@@ -11,7 +11,7 @@ describe('PointsGame', function() {
 		
 		mockery.enable({useCleanCache:true})
 		mockery.registerAllowable('../lib/pointsgame.js', true)
-		mockery.registerAllowable('util')
+		mockery.registerAllowables(['util', 'events'])
 
 		//setup mock Twitter
 		mockery.registerSubstitute('twitter', '../test/mock-twitter.js')
@@ -38,9 +38,32 @@ describe('PointsGame', function() {
 		
 	})
 	
+	//start
+	it('should filter tweets for #points', function(done) {
+		
+		Twitter.prototype.stream = function(method, params, callback) {
+			method.should.equal('filter')
+			params.should.have.property('track','#points')
+			done()
+		}
+		
+		new PointsGame().start()
+	})
+	
+	it('should ignore tweets that don\'t contain an assignment', function() {
+		
+		new PointsGame().start()
+		
+		Twitter.tweet('Welcome to the Game of #Points')
+		
+		//TODO verify nothing happened
+
+	})
+	
 	afterEach(function() {
 		
 		//cleanup mockery
+		mockery.deregisterAll()
 		mockery.disable()
 	})
 })

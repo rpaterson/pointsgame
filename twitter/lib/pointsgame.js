@@ -39,13 +39,12 @@ var PointsGame = function PointsGame(db) {
 		
 		start: function() {
 
-//			pointsgameTwitter.stream('filter', {track:'#points'}, function onPointsStream(stream) {
-//			    stream.on('data', 
-			pointsgameTwitter.search('#points', {count:3}, function onData(result) {
-				var data = result.statuses[0]
-			    processTweet(data.id, data.text, data.user.screen_name)
+			pointsgameTwitter.stream('filter', {track:'#points'}, function onPointsStream(stream) {
+			    stream.on('data', function onData(data) {
+			    	console.puts(data)
+				    processTweet(data.id_str, data.text, data.user.screen_name)
+				});
 			});
-//			});
 		}				
 	}
 
