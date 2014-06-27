@@ -19,17 +19,17 @@ __.create = function(options) {
 /**
  * Emit a tweet
  * 
- * @param {string} id_str ID string
+ * @param {string} idStr ID string
  * @param {string} text 
- * @param {string} screen_name screen name of author
+ * @param {string} screenName screen name of author
  */
-__.prototype.tweet = function(id_str, text, screen_name) {
+__.prototype.tweet = function(idStr, text, screenName) {
 	
 	var tweet = {
-		id_str: id_str,
+		'id_str': idStr,
 		text: text,
 		user: {
-			screen_name: screen_name
+			'screen_name': screenName
 			}
 		};
 	
@@ -37,7 +37,7 @@ __.prototype.tweet = function(id_str, text, screen_name) {
 };
 
 __.prototype.verifyCredentials = function(callback) {
-	callback({})
+	callback({});
 };
 
 __.prototype.stream = function(method, params, callback) {
@@ -50,7 +50,7 @@ __.prototype.stream = function(method, params, callback) {
 	if (method === 'filter') {
 		
 		var trackRegExps = params.track.split(',').map(function(track) {
-      return new RegExp('\b' + track + '\b')
+      return new RegExp('\b' + track + '\b');
     });
 		
 		var filteredStream = new EventEmitter();
@@ -59,13 +59,13 @@ __.prototype.stream = function(method, params, callback) {
         return trackRegExp.test(tweet.text);
       });
       if (filterPass)
-				filteredStream.emit('data', tweet)
+				filteredStream.emit('data', tweet);
 		});
 		
-		callback(filteredStream)
+		callback(filteredStream);
 
 	} else {
-		throw('Only "filter" streams mocked')
+		throw('Only "filter" streams mocked');
 	}
 	
 };

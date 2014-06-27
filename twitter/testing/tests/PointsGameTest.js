@@ -36,7 +36,7 @@ exports['should filter tweets for #points'] = function(test) {
   this.twitter.stream = function(method, params, callback) {
     test.equal(method, 'filter');
     test.equal(params.track, '#points');
-    test.done()
+    test.done();
   };
 
   this.pointsgame.start();

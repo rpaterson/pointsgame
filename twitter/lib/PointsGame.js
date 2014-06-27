@@ -19,18 +19,18 @@ __.create = function(twitter, db) {
   return instance;
 };
 
-__.prototype._processTweet = function(id_str, text, screen_name) {
+__.prototype._processTweet = function(idStr, text, screenName) {
 	
-  var assignment = __.parseTweet(text)
+  var assignment = __.parseTweet(text);
   if (assignment) {
-    processAssignment(screen_name, assignment.toUsername, assignment.points)
+    this._processAssignment(screenName, assignment.toUsername, assignment.points);
   }
 
 };
 
 __.prototype._processAssignment = function(fromUsername, toUsername, points) {
 			
-  console.log(fromUsername + ' gives ' + points + ' to ' + toUsername)
+  console.log(fromUsername + ' gives ' + points + ' to ' + toUsername);
 };
 
 	
@@ -45,7 +45,7 @@ __.prototype.start = function() {
     that._twitter.stream('filter', {track:'#points'}, function onPointsStream(stream) {
         stream.on('data', function onData(data) {
           console.puts(data);
-          that._processTweet(data.id_str, data.text, data.user.screen_name)
+          that._processTweet(data['id_str'], data.text, data.user['screen_name']);
       });
     });
 
@@ -60,13 +60,13 @@ __.prototype.start = function() {
  */
 __._parseTweet = function(text) {
 	
-	var toUsername, pointsStr;
-	if (match = text.match(/([+-]?\d+)\s.*?#points\s.*?@(\w+)/i)) {
+	var toUsername, pointsStr, match;
+	if ((match = text.match(/([+-]?\d+)\s.*?#points\s.*?@(\w+)/i))) {
 		
 		toUsername = match[2];
 		pointsStr = match[1];
 		
-	} else if (match = text.match(/@(\w+)\s.*?([+-]?\d+)\s+.*?#points/i)) {
+	} else if ((match = text.match(/@(\w+)\s.*?([+-]?\d+)\s+.*?#points/i))) {
 		
 		toUsername = match[1];
 		pointsStr = match[2];
@@ -79,7 +79,7 @@ __._parseTweet = function(text) {
 	
 	var points = parseInt(pointsStr, 10);
 	
-	return {toUsername: toUsername, points:points}
+	return {toUsername: toUsername, points: points};
 };
 
 
