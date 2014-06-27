@@ -1,6 +1,6 @@
 var util = require('util');
 var Twitter = require('twitter');
-var PointsGame = require('./lib/pointsgame.js');
+var PointsGame = require('./lib/PointsGame');
 
 var twitter = new Twitter({
     consumer_key: 'JmBMbdsE5rgdaAOz5WpwIw',
