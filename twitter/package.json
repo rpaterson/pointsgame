@@ -27,7 +27,8 @@
 	  "twitter": "0.2.5"
   },
   "devDependencies": {
-          "nodeunit": "",
+    "nodeunit": "",
+    "jshint": "",
 	  "istanbul": "0.2.3",
 	  "mockery": "1.4.0"
   },
