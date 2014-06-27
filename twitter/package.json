@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
-    "test": "./node_modules/.bin/mocha --require should",
+    "test": "istanbul cover node_modules/nodeunit/bin/nodeunit test --print detail",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha"
   },
   "repository": {
@@ -28,8 +28,7 @@
 	  "twitter": "0.2.5"
   },
   "devDependencies": {
-	  "mocha": "1.17.0",
-	  "should": "2.1.1",
+          "nodeunit": "",
 	  "istanbul": "0.2.3",
 	  "mockery": "1.4.0"
   },
