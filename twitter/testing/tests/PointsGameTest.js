@@ -1,5 +1,5 @@
 var mockery = require('mockery');
-var MockTwitter = require('../mocks/mock-twitter');
+var MockTwitter = require('../mocks/MockTwitter');
 var PointsGame = require('../../lib/PointsGame');
 
 exports.setUp = function(callback) {
