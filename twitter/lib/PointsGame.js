@@ -32,10 +32,55 @@ PointsGame.prototype._processAssignment = function _processAssignment(
     toUsername,
     points
     ) {
-			
-  console.log(fromUsername + ' gives ' + points + ' to ' + toUsername);
+
+  var that = this;
+
+  var collection = this.db.collection('points');
+  collection.findOne({username: toUsername}, function foundOne(err, doc) {
+    if (err)
+      return console.error(err);
+
+    if (!doc) {
+
+      //new player
+      collection.insert(
+        {username: toUsername, points: points},
+        function onInsert(err, doc) {
+          if (err)
+            return console.error(err);
+          that._tweetAssignment(fromUsername, toUsername, points, points);
+        }
+      );
+
+    } else {
+
+      //existing player
+      collection.update(
+        {username: toUsername},
+        {$set: { points: doc.points + points}},
+        function onUpdate(err, result) {
+          if (err)
+            return console.error(err);
+          that._tweetAssignment(fromUsername, toUsername, points, doc.points + points);
+        });
+    }
+
+
+  });
+
 };
 
+
+PointsGame.prototype._tweetAssignment = function _tweetAssignment(
+    fromUsername,
+    toUsername,
+    pointsIncrement,
+    pointsTotal
+    ) {
+
+  //TODO tweet @fromUsername gave pointsIncrement points to @toUsername.
+  //@toUsername now has pointsTotal points.
+};
 	
 PointsGame.prototype.start = function start() {
 
