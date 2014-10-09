@@ -1,6 +1,6 @@
 var util = require('util');
 
-var __ = function()  {};
+var PointsGame = function PointsGame()  {};
 
 /**
  * The Game of Points on Twitter
@@ -8,9 +8,9 @@ var __ = function()  {};
  * @param twitter twitter
  * @param db database
  */
-__.create = function(twitter, db) {
+PointsGame.create = function create(twitter, db) {
 
-  var instance = new __();
+  var instance = new PointsGame();
 
   instance._db = db;
 
@@ -19,22 +19,26 @@ __.create = function(twitter, db) {
   return instance;
 };
 
-__.prototype._processTweet = function(idStr, text, screenName) {
+PointsGame.prototype._processTweet = function _processTweet(idStr, text, screenName) {
 	
-  var assignment = __.parseTweet(text);
+  var assignment = PointsGame.parseTweet(text);
   if (assignment) {
     this._processAssignment(screenName, assignment.toUsername, assignment.points);
   }
 
 };
 
-__.prototype._processAssignment = function(fromUsername, toUsername, points) {
+PointsGame.prototype._processAssignment = function _processAssignment(
+    fromUsername,
+    toUsername,
+    points
+    ) {
 			
   console.log(fromUsername + ' gives ' + points + ' to ' + toUsername);
 };
 
 	
-__.prototype.start = function() {
+PointsGame.prototype.start = function start() {
 
   var that = this;
 
@@ -55,10 +59,10 @@ __.prototype.start = function() {
 
 /**
  * Parse tweet text
- * @param {string} text tweet text 
+ * @param {string} text tweet text
  * @returns {?{toUsername: string, points: number}} assignment or null if none parsed from text
  */
-__._parseTweet = function(text) {
+PointsGame._parseTweet = function parseTweet(text) {
 	
 	var toUsername, pointsStr, match;
 	if ((match = text.match(/([+-]?\d+)\s.*?#points\s.*?@(\w+)/i))) {
@@ -83,4 +87,4 @@ __._parseTweet = function(text) {
 };
 
 
-module.exports = __;
+module.exports = PointsGame;
