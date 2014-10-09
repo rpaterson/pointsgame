@@ -24,7 +24,8 @@
 	  "url": "http://github.com/rpaterson/pointsgame/issues"
   },
   "dependencies": {
-	  "twitter": "0.2.5"
+    "twitter": "0.2.5",
+    "tingodb": ""
   },
   "devDependencies": {
     "nodeunit": "",
