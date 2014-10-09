@@ -1,22 +1,21 @@
 var util = require('util');
 
-var PointsGame = function PointsGame()  {};
-
 /**
  * The Game of Points on Twitter
  *
  * @param twitter twitter
  * @param db database
  */
+var PointsGame = function PointsGame(twitter, db)  {
+
+  this._db = db;
+
+  this._twitter = twitter;
+
+};
+
 PointsGame.create = function create(twitter, db) {
-
-  var instance = new PointsGame();
-
-  instance._db = db;
-
-  instance._twitter = twitter;
-
-  return instance;
+  return new PointsGame(twitter, db);
 };
 
 PointsGame.prototype._processTweet = function _processTweet(idStr, text, screenName) {
