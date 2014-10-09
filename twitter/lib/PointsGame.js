@@ -41,7 +41,7 @@ PointsGame.prototype.start = function start() {
 
   var that = this;
 
-  this._twitter.verifyCredentials(function() {
+  this._twitter.verifyCredentials(function credentialsVerified() {
 
     console.log('PointsGame Twitter credentials verified');
 
